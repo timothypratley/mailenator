@@ -11,12 +11,23 @@ To send a message from the command line:
 `lein send '{"to": "timothypratley@gmail.com", "subject": "Example Email", "body": "<html><body><h1>Hello World!</h1></body></html>"}'`
 
 
-To use a template, specify a template name and arguments:
+To send a message from the command line useing a template,
+specify a template name and arguments:
 
 `lein send '{"to": "timothypratley@gmail.com", "subject": "Example Email", "template": ["welcome", {"name": "Insect Overlords"}]}'`
 
 Templates are HTML files in the resources directory.
-Templates are [Mustache.](http://mustache.github.io/mustache.5.html)
+Templates are applied according to [Mustache.](http://mustache.github.io/mustache.5.html)
+In this example `{{name}}` will be replaced with `"Insect Overlords"`.
+
+To send a message via the REST API:
+
+Start the server (see Development below) then
+
+`curl -H "Content-Type: application/json" \
+    -X POST -d '{"to": "timothypratley@gmail.com", "subject": "Example Email", "template": ["welcome", {"name": "Insect Overlords"}]}'
+    http://localhost:3000/send`
+
 
 
 ## Development
@@ -28,8 +39,18 @@ To run the integration tests:
 
 To run unit tests:
 
-`lein test`
-(or `lein test-refresh`)
+`lein test` (or `lein test-refresh`)
+
+
+To run the server in development mode from the command line:
+
+`lein ring server headless`
+
+
+
+## Deployment
+
+`lein uberjar`
 
 
 
