@@ -22,11 +22,42 @@ In this example `{{name}}` will be replaced with `"Insect Overlords"`.
 
 To send a message via the REST API:
 
-Start the server (see Development below) then
+Start the development server (see Development below) then
 
 `curl -H "Content-Type: application/json" \
     -X POST -d '{"to": "timothypratley@gmail.com", "subject": "Example Email", "template": ["welcome", {"name": "Insect Overlords"}]}'
     http://localhost:3000/send`
+
+
+## Queue Based
+
+### Setup
+
+OSX: `brew install rabbitmq` then `rabbitmq-server`
+
+Other: See https://www.rabbitmq.com
+
+### Start the consumer
+
+`lein consume`
+
+
+### Enqueue a message
+
+Open http://localhost:15672/ and login.
+(On a fresh installation the user "guest" is created with password "guest".)
+
+Click on the Queues tab.
+Click on Publish message.
+Enter into the payload the JSON description of an email:
+
+```json
+{"to": "timothypratley@gmail.com",
+ "subject": "Example Email",
+ "template": ["welcome", {"name": "Insect Overlords"}]}
+```
+
+Click publish.
 
 
 
@@ -51,6 +82,8 @@ To run the server in development mode from the command line:
 ## Deployment
 
 `lein uberjar`
+
+This project is currently for local development only.
 
 
 

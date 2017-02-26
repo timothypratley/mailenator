@@ -8,3 +8,6 @@
 
 ### Create a REST API
 - passes a request through to the Mailgun server.
+
+### Add a Queue
+- reads from a RabbitMQ queue

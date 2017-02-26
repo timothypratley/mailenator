@@ -8,9 +8,11 @@
                  [compojure "1.5.2"]
                  [clj-http "3.4.1"]
                  [cheshire "5.7.0"]
-                 [stencil "0.5.0"]]
+                 [stencil "0.5.0"]
+                 [com.novemberain/langohr "3.6.1"]]
   :plugins [[lein-ring "0.11.0"]]
   :ring {:handler mailenator.server/handler}
-  :aliases {"send" ["run" "-m" "mailenator.core/send-email-from-json"]}
+  :aliases {"send" ["run" "-m" "mailenator.core/send-email-from-json"]
+            "consume" ["run" "-m" "mailenator.consumer/-main"]}
   :test-selectors {:default (fn [m] (not (:integration m)))
                    :integration :integration})
