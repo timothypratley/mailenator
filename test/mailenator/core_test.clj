@@ -1,7 +1,8 @@
 (ns mailenator.core-test
-  (:require [clojure.string :as string]
-            [clojure.test :refer :all]
-            [mailenator.core :as mailenator]))
+  (:require
+    [clojure.string :as string]
+    [clojure.test :refer :all]
+    [mailenator.core :as mailenator]))
 
 (deftest ^:integration send-email-integration-test
   (testing "Sending an email"
